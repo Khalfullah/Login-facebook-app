@@ -1,0 +1,15 @@
+<script>
+  function loginWithFacebook() {
+    FB.login(function(response) {
+      if (response.authResponse) {
+        // Jika login berhasil, dapatkan token akses
+        console.log('Logged in');
+        FB.api('/me', {fields: 'id,name,email,phone'}, function(response) {
+          console.log(response); // Menampilkan data pengguna, termasuk nomor telepon jika tersedia
+        });
+      } else {
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    }, {scope: 'public_profile,email,user_phonenumbers'});
+  }
+</script>
